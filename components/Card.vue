@@ -12,6 +12,7 @@
 </template>
 
 <script setup>
+  // Props to pass data
   const { comment } = defineProps(['comment'])
 </script>
 

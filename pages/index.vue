@@ -83,6 +83,7 @@ export default {
   components: {
     SearchBar,
   },  
+
   data() {
     return {
       comments: [],
@@ -98,15 +99,18 @@ export default {
       isLoading: true,
     };
   },
+
   async mounted() {
     this.fetchComments();
   },
+
   computed: {
     visibleComments() {
       // Extract a subset of comments based on the number of items per page
       return this.comments.slice(0, this.itemsPerPage);
     },
   },
+
   methods: {
     goToPage(pageNumber) {
       this.currentPage = pageNumber;
@@ -116,16 +120,24 @@ export default {
         this.fetchComments();
       }
     },
+
+    /*
+      Load More function
+    */
+
     loadMore() {
       this.itemsPerPage = 10;
       this.isAllLoaded = true;
     },
+
     async fetchComments() {
       try {
         this.isSearch = false;
         this.isLoading = true;
 
-        const response = await $fetch('http://127.0.0.1:8000/comments', {
+        const config = useRuntimeConfig();
+
+        const response = await $fetch(config.public.API_URL + '/comments', {
           method: 'GET',
           params: { page: this.currentPage },
         });
@@ -140,7 +152,7 @@ export default {
     async searchComment(searchQuery, page = 1) {
       try {
         this.isLoading = true;
-        if (this.isSearching) {
+        if (this.isSearching) { // just to make sure call API 1 time
           return;
         }
 
@@ -148,7 +160,9 @@ export default {
         this.isSearch = true;
         this.searchQuery = searchQuery;
 
-        const response = await $fetch('http://127.0.0.1:8000/comments/search', {
+        const config = useRuntimeConfig();
+
+        const response = await $fetch(config.public.API_URL + '/comments/search', {
           method: 'GET',
           params: { query: searchQuery, page: page },
         });

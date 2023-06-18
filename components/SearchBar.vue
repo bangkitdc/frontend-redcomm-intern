@@ -15,7 +15,9 @@
 </template>
 
 <script>
-import { debounce } from "lodash";
+  // Using lodash library
+  import { debounce } from "lodash";
+
   export default {
     data() {
       return {
@@ -31,6 +33,8 @@ import { debounce } from "lodash";
     watch: {
       '$route.query.searchQuery': {
         handler: function(newVal, oldVal) {
+
+          // To prevent multiple API calls, check if the same as value before
           if (newVal != oldVal) {
             this.searchQuery = this.$route.query.searchQuery
             this.performSearch()
@@ -40,6 +44,11 @@ import { debounce } from "lodash";
       }
     },
     methods: {
+      /*
+        Separate button and actual call to prevent
+        2x or multiple API calls at a time.
+      */
+
       search() {
         // this is call when user click search Button
         this.$router.push({query: { 'searchQuery' : this.searchQuery}})
@@ -51,6 +60,12 @@ import { debounce } from "lodash";
         if (param) {
           this.searchQuery = '';
         }
+
+        /*
+          Debouncing search,
+          create responsive search,
+          preventing useless API calls
+        */
 
         // Debounce the input change to delay API call
         if (!this.debounceQuery) {
