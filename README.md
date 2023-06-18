@@ -1,63 +1,24 @@
-# Nuxt 3 Minimal Starter
+# Frontend
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Description
+Nature Social is an application that allows users to search for comments related to nature. It provides pagination functionality to display the comments in smaller, manageable chunks. Additionally, it incorporates debounce search to reduce the frequency of API calls and improve performance.
 
-## Setup
+## Tech Stack
+- Nuxt3
+- Vue
+- Tailwind CSS
 
-Make sure to install the dependencies:
-
+## How To Use
+1. Clone this repository
+2. Setup the .env file
+3. Install all the dependencies
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
 ```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
+4. Run app
+```bash 
 npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
 ```
 
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Copyright
+2023 © bangkitdc. All Rights Reserved.
